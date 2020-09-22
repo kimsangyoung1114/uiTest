@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="UserInfo">
+  <sql id="UserInfoColunms">
+  
+  ui_num, ui_name, ui_age, ui_birth, ui_id, ui_password, ui_phone, ui_email, ui_credat, ui_nickname, ui_admin
+   
+  	
+  
+  </sql>
+  <insert id="insertUserInfo">
+  
+  insert into user_info(<include refid="UserInfoColunms"/>) values(seq_ui_num.nextval, #{uiName}, 
+  #{uiAge}, #{uiBirth}, #{uiId},#{uiPassword}, #{uiPhone},#{uiEmail},sysdate, #{uiNickname},'o')
+  
+  </insert>
+  
+  
+<select id="selectUserInfoForLogin" resultType="vo.UserInfoVO">
+select <include refid="UserInfoColunms"/> from user_info 
+where ui_id=#{uiId} and ui_password=#{uiPassword}
+  
+  </select>
+  
+  </mapper>
+  
